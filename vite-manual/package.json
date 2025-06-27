@@ -1,0 +1,22 @@
+{
+	"private": true,
+	"name": "manual-vite",
+	"type": "module",
+	"description": "Vite 툴체인을 사용한 개발 환경 매뉴얼 구성",
+	"version": "0.0.1",
+	"scripts": {
+		"dev":"vite",
+		"build":"vite build",
+		"preview":"vite preview"
+	},
+	"engines": {
+		"node": "^20.13.1",
+		"vscode": "^1.101.2"
+	},
+	"devDependencies": {
+		"vite": "7.0.0"
+	},
+	"dependencies": {
+		"kind-tiger": "1.0.1"
+	}
+}
