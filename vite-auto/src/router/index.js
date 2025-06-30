@@ -21,6 +21,8 @@ export async function router(){
     duration:0.7
   })
   
+  // a태그 찾기 
+
   await gsap.to(app, {opacity:1,x:"-100%"})
 
   const render = routes[path] || NotFound

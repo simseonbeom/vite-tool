@@ -12,11 +12,18 @@ export class Header extends HTMLElement {
       {to:'/',label:'HOME'},
       {to:'/about',label:'ABOUT'},
       {to:'/contact',label:'CONTACT'},
+      {to:'/call',label:'call'},
+      {to:'/bind',label:'bind'},
+      {to:'/apply',label:'apply'},
     ]
 
     this.render();
 
     this.links = [...this.shadowRoot.querySelectorAll('header-link')];
+
+    
+    this._ = [...this.shadowRoot.querySelectorAll('header-link')]
+
 
     this.aa = this.links.map((link)=> link.shadowRoot.querySelector('a'));
     
@@ -30,19 +37,24 @@ export class Header extends HTMLElement {
     this.aa.forEach((a) => a.classList.remove("active"));
     e.target.classList.add("active");
     
+    console.log( this.aa );
+    
+    
   }
 
   attachEvent(){
     this.aa.forEach((a)=>{
-      a.addEventListener('click',this.handleRouter.bind(this))
+      a.addEventListener('click',(e)=> this.handleRouter(e))
     })
   }
 
   render() {
 
     const linkItems = this.linkList
-    .map(({to,label})=> `<header-link to="${to}">${label}</header-link>`)
+    ?.map(({to,label})=> `<header-link to="${to}">${label}</header-link>`)
     .join('')
+
+    
 
     this.shadowRoot.innerHTML = `
       <style>
@@ -71,7 +83,7 @@ export class Header extends HTMLElement {
         <h1 class="logo">❤️</h1>
         <nav>
           <ul>
-            ${linkItems}
+            ${ this.linkList && linkItems }
           </ul>
         </nav>
       </header>
