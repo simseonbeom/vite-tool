@@ -36,7 +36,9 @@ function loop ():never{
   }
 }
 
-
+/* iterator protocol */
+// lazy loop => closure
+// => 성능 향상 
 
 function* gen():Generator<number, void, void>{
   let count = 0;

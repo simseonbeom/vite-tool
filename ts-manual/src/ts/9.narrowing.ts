@@ -10,7 +10,7 @@ function fn(x:string | number | Date | Cat){
   if(typeof x === 'string') {
     x.toUpperCase();
   }
-  
+
   else if(typeof x === 'number'){
     x.toFixed();
   }
