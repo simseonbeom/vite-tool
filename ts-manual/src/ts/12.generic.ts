@@ -13,6 +13,7 @@ const user:User<string,number> = {
 
 
 
+
 function fn<T>(value:T):T{
 
   // value.toUpperCase()
@@ -94,10 +95,7 @@ function getById<T extends {id:number}>(item:T):number{
 
 getById({id:10,title:'아이폰'})
 getById({id:20,title:'겔럭시'})
-getById({title:'맥북'})
-
-
-
+// getById({title:'맥북'})
 
 
 
