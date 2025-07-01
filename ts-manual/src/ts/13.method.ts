@@ -53,9 +53,16 @@ const filter:Filter = (arr,f) => {
 
 
 
+type __Callback<T,U> = (acc:U,cur:T,i:number) => U;
+type Reduce = <T,U>(arr:T[],f:__Callback<T,U>,initial:U) => U
 
-const reduce = (acc,f,initial) => {
-
+const reduce:Reduce = (arr,f,initial) => {
+  let acc = initial;
+  let i = 0;
+  for(const a of arr){
+    acc = f(acc,a,i++);
+  }
+  return acc;
 }
 
 

@@ -25,7 +25,7 @@ const settings = {
   theme:'dark',
   fontSize:16,
   language:'ko'
-}
+}as const
 
 
 type SettingsKey = keyof typeof settings

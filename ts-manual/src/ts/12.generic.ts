@@ -30,13 +30,14 @@ fn({})
 
 
 /* 
+
 T => Type
 U => Util => Unique
 K => Key
 V => Value
 R => return type
 E => Element / Error
-S => 
+S => State
 
 
 */

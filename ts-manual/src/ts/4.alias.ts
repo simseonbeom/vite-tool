@@ -85,7 +85,7 @@ type Person = {
 
 
 const person:Person = {
-  name:'tiger',
+  name:'name',
   age:30,
   email:'tiger@gmail.com',
   gender:'male',
