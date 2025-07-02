@@ -1,4 +1,5 @@
-import { addTodo } from "./todo";
+import { loadStorage } from "./storage";
+import { addTodo, deleteTodo, toggleTodo, updateTodo } from "./todo";
 import type { Todo, TodoList } from "./type";
 import S from "/src/style.module.css";
 
@@ -52,13 +53,17 @@ function handleSubmit(e:SubmitEvent){
 }
 
 
+// 삭제 버튼을 클릭했을 때 데이터 삭제
+// 1. 버튼을 선택합니다.
+// 2. 버튼에 클릭 이벤트 바인딩
+// 3. 선택 항목 제거 (filter)
+// 4. 스토리지 저장 
+// 5. 리렌더링
+
+
 function render(){
 
-  const todos:TodoList = [
-    {id:Date.now(),content:'밥 먹기',completed:false},
-    {id:Date.now(),content:'영화 보기',completed:true},
-    {id:Date.now(),content:'산책 하기',completed:false},
-  ]
+  const todos:TodoList = loadStorage()
 
   list.innerHTML = '';
   
@@ -74,7 +79,60 @@ function render(){
 
     list.appendChild(li)
 
+    /* after */
+
+
+    const btn = li.querySelector('button')!;
+    const checkbox = li.querySelector('input[type="checkbox"]')!;
+    const span = li.querySelector('span')!;
+
+    btn.addEventListener('click',() => {
+      deleteTodo(todo.id)
+      render()
+    })
+    
+    checkbox.addEventListener('change',()=>{
+      const id = todo.id;
+
+      // 배열을 반환(map) => 기존 데이터 배열 (해당 id 아이템을 찾아서 completed: !completed)
+      
+      toggleTodo(todo.id);
+      render()
+      
+
+    })
+    
+    span.addEventListener('blur',()=>{
+      
+
+      // span의 글자 가져오기 (textContent)
+      // 글이 있어야 함 & 기존 글자랑 달라야
+
+      const newContent = span.textContent?.trim() || ''
+      if(newContent && newContent !== todo.content){
+
+        updateTodo(todo.id,newContent)
+        render()
+      }
+      
+
+    })
+
+    
+
+
+
+
   })
+
+
+  
+
+
+  // document.querySelector('#app')?.addEventListener('click',(e)=>{
+  //   console.log(e.target.closest('li').dataset.id);
+    
+  // })
 
 }
 
