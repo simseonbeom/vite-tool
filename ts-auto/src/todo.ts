@@ -47,6 +47,11 @@ export function updateTodo(id:number,newContent:string):void{
 
 
 
+export function getCompletedTodos() {
+  return todos.filter(todo => todo.completed);
+  console.log(todos);
+  
+}
 
 
 
