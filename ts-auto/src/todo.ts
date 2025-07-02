@@ -38,7 +38,7 @@ export function toggleTodo(id:number):void{
 
 export function updateTodo(id:number,newContent:string):void{
   // todos = 
-  todos.map(todo => 
+  todos = todos.map(todo => 
     todo.id === id ? {...todo,content:newContent} : todo
   )
   saveStorage(todos);
