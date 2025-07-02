@@ -16,6 +16,7 @@ const defaultOptions = {
 }
 
 
+
 function delayP(options:Partial<Options>):Promise<User[]>{
 
   const {timeout,condition,data} = {...defaultOptions,...options}
@@ -30,9 +31,7 @@ function delayP(options:Partial<Options>):Promise<User[]>{
 
 
 delayP({
-  timeout:1000,
   data:[{name:'tiger',age:30}],
-  condition:false
 })
 
 

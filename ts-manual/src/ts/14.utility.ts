@@ -78,11 +78,12 @@ const user6:Readonly<User3> = {
 
 
 // type Role = 'admin' | 'user' | 'guest';
+// type Role = keyof typeof access;
 type Role = keyof typeof access;
 
-type RoleStatus = Record<'admin'|'user'|'guest',boolean>
+type RoleStatus = Record<Role,boolean>
 
-const access:RoleStatus = {
+const access = {
   admin:true,
   user:true,
   guest:false

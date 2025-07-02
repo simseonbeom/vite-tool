@@ -151,8 +151,6 @@ type P<T> = T extends Promise<infer U> ? U : T;
 type A = P<Promise<string>>;
 type B = P<number>;
 
-
-
 function logFirst<T>(arr:T[]):void{
   const first:ElementType<T[]> = arr[0];
   console.log(first);
