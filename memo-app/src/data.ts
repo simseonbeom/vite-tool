@@ -1,5 +1,6 @@
 import type { MemoData } from "./card";
 
+
 export const data:MemoData[] = [
   {
     id: 1,

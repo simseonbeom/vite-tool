@@ -1,3 +1,5 @@
+import type { Tables } from "./supabase/database.types";
+
 export type MemoData = {
   id: number;
   priority: "high" | "medium" | "easy";
@@ -12,7 +14,7 @@ function createMemo({
   title,
   description,
   hits,
-}: MemoData): string {
+}: Tables<'memo'>): string {
   return `
     <article class="memo ${priority}" data-id="${id}" draggable="true">
       <header class="memo-header">
@@ -35,6 +37,6 @@ function createMemo({
   `;
 }
 
-export function renderMemo(target: HTMLElement | null, data: MemoData): void {
+export function renderMemo(target: HTMLElement | null, data: Tables<'memo'>): void {
   target?.insertAdjacentHTML("beforeend", createMemo(data));
 }
