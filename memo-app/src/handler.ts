@@ -1,4 +1,9 @@
+import gsap from "gsap";
 import { main } from "./main";
+import { deleteMemo, insertMemo } from "./service/service";
+import type { Tables } from "./supabase/database.types";
+// import { supabase } from "./supabase/supabase";
+
 
 
 let draggingEl:HTMLElement | null = null;
@@ -56,6 +61,79 @@ export function handleDragEnd(){
   }
 
 }
+
+/* 
+
+1. supabase를 사용해서 DELETE 통신을 하자! 
+2. 이벤트 위임 처리 (삭제 버튼을 클릭하면 article의 data-id를 가져오기)
+3. supabase .eq(id:가져온ID)
+
+*/
+
+
+export async function handleDelete(e:MouseEvent){
+  const target = e.target as Element;
+
+  const btn = target.closest('button');
+  const article = target.closest('article');
+
+  if(!(btn && article)) return;
+
+
+  const id = article.dataset.id;
+
+  if(confirm('정말 지울거야..?')){
+
+      deleteMemo(Number(id))
+    }
+}
+
+
+export function handleOpenPop(){
+  
+  const tl = gsap.timeline()
+  .to('#dialog',{autoAlpha:1,duration:0.2})
+  .to('.pop',{y:0, ease:'power3.inOut'})
+  
+}
+
+
+export function handleCreate(e:MouseEvent){
+  e.preventDefault();
+  
+  const title = document.querySelector('#title') as HTMLInputElement;
+  const description = document.querySelector('#description') as HTMLInputElement;
+  const priority = document.querySelector('#priority') as HTMLSelectElement;
+
+  // title값
+  // description값
+  // priority값
+
+  insertMemo({
+    title:title.value,
+    description:description.value,
+    priority:priority.value as Tables<'memo'>['priority']
+  })
+
+  title.value = '';
+  description.value = '';
+  priority.value = 'high';
+  
+}
+export function handleClosePop(){
+  
+    
+  const tl = gsap.timeline()
+  .to('.pop',{y:'100%', ease:'power3.inOut'})
+  .to('#dialog',{autoAlpha:0,duration:0.2})
+  
+}
+
+
+
+
+
+
 
 
 
